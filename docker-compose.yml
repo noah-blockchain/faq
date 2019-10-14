@@ -1,0 +1,10 @@
+version: '3'
+volumes:
+  pgdata:
+    driver: local
+services:
+  static:
+    build: .
+    ports:
+      - 80:80
+    restart: always
