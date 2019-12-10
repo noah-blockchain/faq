@@ -1,5 +1,5 @@
 run app 
 
-$ cd app
+$ cd front
 
 $ npm run start
