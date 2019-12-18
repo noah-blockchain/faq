@@ -83,6 +83,7 @@ class Content extends React.Component {
       }
 
     render() {
+        console.log("this.state.data",this.state.data)
       return (
         <Section>
         <Tabs dataUpdate={this.dataUpdate.bind(this)}>
@@ -92,7 +93,7 @@ class Content extends React.Component {
                       Main page title
                   </TabsTitle>
                   <Border />
-                  <div className="content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.data.Main)}}></div>
+                  <div className="content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.data.Content)}}></div>
               </TabsContent>
           </TabsSection>
 

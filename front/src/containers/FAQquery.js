@@ -22,7 +22,7 @@ class FAQquery extends React.Component {
   }
 
   refetchData() {
-    axios.get(`${config.api}/faq/en`)
+    axios.get(`${config.localhost}/faq/en`)
         .then(response => {
             if (response.status === 200) { 
               this.setState({
