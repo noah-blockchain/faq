@@ -10,13 +10,16 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
-    height: 100%;
+    // height: 100%;
     min-width:900px;
+    @media (min-width: 640px) {
+      min-width:100px;
+    }
   }
-  html { 
-    position:relative; 
-    min-height:100%;
-   }
+  // html { 
+  //   position:relative; 
+  //    min-height:100%;
+  //  }
    blockquote {
     border-left: 5px solid #eee;
     color: #666;

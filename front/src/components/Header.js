@@ -2,18 +2,20 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 import header from '../img/bg-header-main.svg';
 import logo from '../img/noah-logo-circle.svg';
-import searchLogo from '../img/search-logo.svg';
+import japanImage from '../img/japan.svg';
+import englishImage from '../img/united-kingdom.svg';
 
 const Section = styled.section`
-    overflow: hidden;
-    background-image: url(${header});
-    background-size: cover;
-    background-position: center;
-    width: 100%;     
-    border-width: 0;
-    border-style: solid;
-    border-color: #e2e8f0;
-    font-family: 'Lato', sans-serif;
+overflow: hidden;
+background-image: url(${header});
+color: #fff;
+background-size: cover;
+padding: 34px 0;
+width: 100%;
+height: 60px; 
+position: absolute;
+top: 0;
+margin-bottom: 60px;
 `;
 
 const ContentSection = styled.div`
@@ -25,12 +27,12 @@ const ContentSection = styled.div`
     align-items: center;
     flex-wrap: wrap;
     display: flex;
-    @media (min-width: 640px) {
-            max-width: 640px
-    }
+    // @media (min-width: 640px) {
+    //         max-width: 640px
+    // }
     
     @media (min-width: 768px) {
-            max-width: 768px
+            max-width: none
     }
     
     @media (min-width: 1024px) {
@@ -66,47 +68,15 @@ const HeaderLogoText  = styled.div`
     font-size: 26px;
 `;
 
-const ContentSectionCenter = styled.section`
-    display: block;
-    position: relative;
-`;
-
-const Search = styled.input`
-    height: 1.5em;
-    width: 23em;
-    font-size: .875rem;
-    color: #2d3748;
-    padding-left: 2.5rem;
-    padding-right: .5rem;
-    padding-top: .25rem;
-    padding-bottom: .25rem;
-    line-height: 1.5;
-    border-width: 1px;
-    border-radius: .25rem;
-    background-color: #f7fafc;
-    overflow: visible;
-`;
-
-const SearchLogo = styled.div`
-    height: 1em;
-    width: 1em;
-    display: block;
-    vertical-align: middle;
-    background-position: center;
-    background-size: cover;
-    position: absolute;
-    top: 0.5rem;
-    left: 0.8rem;
-    background-image: url(${searchLogo});
-`;
-
 const ContentSectionRight = styled.section`
     display: block;
+    padding-right: 1rem;
 `;
 
-const LoginButton = styled.div`
+const CountryButton = styled.div`
     align-items: center;
-    width: 8.625em;
+    width: 2em;
+    height: 1em;
     display: block;
     background-color: transparent;
     border: 1px solid white;
@@ -126,6 +96,7 @@ const LoginButton = styled.div`
     cursor: pointer;
     text-decoration: none;
     color: inherit;
+    background: url(${props => props.language === "en" ? englishImage  : japanImage});
 `;
 
 const StyledLink = styled.a`
@@ -148,16 +119,11 @@ class Header extends Component {
                     Noah FAQ
                 </HeaderLogoText>
              </ContentSectionLeft>
-             {/* <ContentSectionCenter>
-                <Search placeholder="Search"/>
-                <SearchLogo />
-             </ContentSectionCenter> */}
              <ContentSectionRight>
                  <StyledLink to="/admin">
-                 {/* <Route exact path="/admin" component={AdminPanel} /> */}
-                <LoginButton >
-                    Login
-                </LoginButton>
+                <CountryButton 
+                onClick={this.props.changeLanguage}
+                language={this.props.language}/>
                 </StyledLink>
              </ContentSectionRight>
           </ContentSection>

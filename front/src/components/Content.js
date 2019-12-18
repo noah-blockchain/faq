@@ -12,12 +12,19 @@ const Section = styled.section`
     margin-right: auto;
     flex-wrap: wrap;
     display: flex;
-    // @media (min-width: 640px) {
-    //     max-width: 640px
-    // }
-    @media (min-width: 768px) {
+    margin-top: 120px;
+    width: 1160px; 
+    
+    @media (max-width: 640px) {
+        max-width: unset;
+        width: unset;
+        margin: 120 auto;
+        display: block;
+        position: absolute;
+    }  
+     @media (max-width: 768px) {
         width: 95%;
-        margin: 0 auto;
+        margin: 120 auto;
         display: block;
     }
     @media (min-width: 1024px) {
@@ -32,29 +39,6 @@ const TabsSection = styled.div`
     width 100%
 `;
 
-const TabsContent = styled.div`
-    box-shadow: 0 4px 8px rgba(0,0,0,.1);
-    color: #1a202c;
-    padding: 2rem;
-    line-height: 1.5;
-    background-color: #fff;
-`;
-
-const TabsTitle = styled.h1`
-    overflow-wrap: normal;
-    word-break: normal;
-    font-size: 1.25rem;
-    color: #1a202c;
-    padding-bottom: .5rem;
-    font-weight: 400;
-`;
-
-const Border = styled.hr`
-    border-bottom-width: 1px;
-    border-color: #cbd5e0;
-
-`;
-
 const TabsBlock = styled.div`
 box-shadow: 0 4px 8px rgba(0,0,0,.1);
 color: #1a202c;
@@ -62,15 +46,17 @@ padding: 2rem;
 line-height: 1.5;
 background-color: #fff;
 min-height: 200px;
-
 @media (min-width: 640px) {
-    width: 440px;
+    width: 340px;
 }
 @media (min-width: 768px) {
-    width: 400px;
+    width: 450px;
 }
-@media (min-width: 860px) {
-    width: 550px;
+@media (min-width: 800px) {
+    width: 524px;
+}
+@media (min-width: 900px) {
+    width: 624px;
 }
 @media (min-width: 1024px) {
     width: 724px;
@@ -121,7 +107,6 @@ class Content extends React.Component {
         )
             }
         else if (this.state.data) {
-            console.log("this.state.data => ",this.state.data)
                 return (
         <Section>
             <Tabs
@@ -131,8 +116,6 @@ class Content extends React.Component {
                 language={this.state.language}
             >
             {this.state.data.map(((object, id) => {
-                console.log("object",object)
-                console.log("id",id)
              return  <TabsSection key={id}>
                         <Tabs.Tab id={id} title={object.Header}>
                             <TabsBlock dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(object.Content)}}></TabsBlock>

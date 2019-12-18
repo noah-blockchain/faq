@@ -7,13 +7,12 @@ const Section = styled.section`
     overflow: hidden;
     background-image: url(${footer});
     color: #fff;
-    background-size: contain;
+    background-size: cover;
     padding: 34px 0;
     width: 100%;
     height: auto; 
     position: absolute;
     bottom: 0;
-    width: 100%;
 `;
 
 const ContentSection = styled.div`
@@ -21,6 +20,10 @@ const ContentSection = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 0 24px;
+    @media (max-width: 630px) {
+        display: block;
+        margin: 0 auto;
+    }
 `;
 
 const Logo = styled.div`
@@ -29,10 +32,18 @@ const Logo = styled.div`
     width: 255px;
     height: 66px;
     background-image: url(${logo});
+    @media (max-width: 630px) {
+        margin: 0 auto;
+    }
 `;
 
 const ContentSectionRight = styled.section`
     display: block;
+    margin-top: -5px;
+    @media (max-width: 630px) {
+        margin: 15px auto;
+        width: max-content;
+    }
 `;
 
 const FooterMenu = styled.div`

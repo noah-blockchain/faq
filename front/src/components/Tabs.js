@@ -1,9 +1,6 @@
 import React from "react";
 import { TabProvider, TabConsumer } from "./TabsContext";
 import TabItem from "./Tab";
-import styled from 'styled-components';
-import axios from 'axios';
-import config from '../config'
 
 const ListTabs = ({ children }) => (
   <ul style={{
@@ -14,6 +11,22 @@ const ListTabs = ({ children }) => (
   }}>{ children }</ul>
 );
 
+const ListTabsMobile = ({ children }) => (
+  <select style={{
+    display: "block",
+    padding: "10px",
+    listStyle: "none",
+    border: "1px solid rgb(179, 131, 64)",
+    borderRadius: "5px",
+    margin: "0 auto 15px",
+    webkitAppearance: "none",
+    mozAppearance: "none",
+    textIndent: "1px",
+    textOverflow: '',
+    width: "100%"
+  }}>{ children }</select>
+);
+
 const TabTitleItem = ({ children, innerRef, ...restProps }) => (
   <li 
   ref={innerRef}
@@ -22,6 +35,16 @@ const TabTitleItem = ({ children, innerRef, ...restProps }) => (
     width: "200px",
     transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms"
   }} { ...restProps }>{ children }</li>
+);
+
+const TabTitleItemMobile = ({ children, innerRef, ...restProps }) => (
+  <option  
+  ref={innerRef}
+  style={{
+    display: "flex",
+    width: "200px",
+    transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms"
+  }} { ...restProps }>{ children }</option >
 );
 
 const TabAnchorItem = ({ isActiveTab, children, ...restProps}) => {
@@ -57,13 +80,19 @@ const TabAnchorItem = ({ isActiveTab, children, ...restProps}) => {
   );
 };
 
-
 const TabsContainer = ({ children, ...restProps }) => (
   <div style={{
-    // width: "15%",
     position: "relative",
-    // marginRight: "100px",
-    // width: "5em"
+  }}
+  { ...restProps }>
+    { children }
+  </div>
+);
+
+const TabsContainerMobile = ({ children, ...restProps }) => (
+  <div style={{
+    width: "100%",
+    position: "relative",
   }}
   { ...restProps }>
     { children }
@@ -75,7 +104,16 @@ const ReactTabs = ({ children, ...restProps }) => (
     display: "flex",
      width: "0",
     justifyContent: "space-between",
-    // margin: "0 auto"
+  }}
+  { ...restProps }>
+    { children }
+  </div>
+);
+
+const ReactTabsMobile = ({ children, ...restProps }) => (
+  <div style={{
+    display: "block",
+     width: "100%",
   }}
   { ...restProps }>
     { children }
@@ -101,47 +139,62 @@ class Tabs extends React.Component {
           page: this.props.page
         },()=>{})
     }   
-}
+  }
   
-  // componentDidMount() {
-  //   // console.log("this.props => ",this.props)
-  //   this.setState({
-  //     language: this.props.language
-  //   },() => { console.log("language => ",this.state.language) });
-  // }
-
-  plus = () => {
-    this.setState( {
-      addingNew: true
-    })
-  }
-
-  save = () => {
-    let value = this.inputNode.value
-    const fixedData = value.replace(/&nbsp;/gi,'')
-    const url = `${config.api}/${this.state.page}/${this.state.language}/addTab/${value}`
-    axios.post(url, fixedData)
-        .then(response => {
-            if (response.status === 200) { 
-              this.props.refetchData();
-            } 
-        })
-        .catch(error => {
-          console.log("error", error)
-        });
-
-    // console.log(this.inputNode.value)
-    this.setState( {
-      addingNew: false
-    })
-  }
-
-  // editTab =(data) => {
-  //   console.log("editTab init, data", data)
-  // }
-
   render() {
-    //  console.log("this.props => ", this.props)
+      if (window.innerWidth <= 640) {
+        return (
+          <TabProvider 
+          removeData={this.props.removeData}
+          refetchData={this.props.refetchData}
+          language={this.props.language}
+          page={this.props.page}
+          activeTab={this.props.activeTab}
+          dataUpdate={this.props.dataUpdate}
+          openedTab={this.props.openedTab}>
+            <TabConsumer>
+              {value => (
+                <ReactTabsMobile>
+                  <TabsContainerMobile>
+                    <ListTabsMobile>
+                      {value.context.tabs.map((tab, index) => (
+                        <TabTitleItemMobile
+                          value={tab.title}
+                          key={index}
+                          id={tab.id}
+                          innerRef={tabElement => {
+                            if (!this.state.tabsElements[tab.id]) {
+                              this.setState((prevState, props) => {
+                                const tabsElements = prevState.tabsElements;
+                                tabsElements[tab.id] = tabElement;
+                                return {
+                                  tabsElements
+                                };
+                              });
+                            }
+                          }}
+                          isActiveTab={value.context.activeTab.id === tab.id}
+                            href="#!"
+                            onClick={value.context.activateTab(tab)}
+                            onKeyPress={event => {
+                              const code = event.keyCode || event.which;
+                              if (code === 13) {
+                                this.activateTab(tab)(event);
+                              }
+                            }}
+                        > {tab.title}
+                         
+                        </TabTitleItemMobile>
+                      ))}
+                    </ListTabsMobile>
+                  </TabsContainerMobile>
+                  {this.props.children}
+                </ReactTabsMobile>
+              )}
+            </TabConsumer>
+          </TabProvider>
+        );
+    } else {
     return (
       <TabProvider 
       removeData={this.props.removeData}
@@ -195,7 +248,5 @@ class Tabs extends React.Component {
         </TabConsumer>
       </TabProvider>
     );
-  }
-}
-
+}}}
 export default Tabs;

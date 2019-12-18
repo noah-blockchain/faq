@@ -1,6 +1,4 @@
 import React from "react";
-import axios from 'axios';
-import config from '../config'
 
 const TabsContext = React.createContext({
   context: {
@@ -47,12 +45,10 @@ class TabProvider extends React.Component {
         activeTab: tab
       };
     },()=>{});
-    // console.log("props",this.props)
     this.props.dataUpdate(tab);
   };
 
   editTab = tab => event => {
-    // console.log("edit init, id => ",tab)
     this.setState((prevState, props) => {
       return {
         prevOpenedTab: prevState.openedTab,
@@ -61,43 +57,8 @@ class TabProvider extends React.Component {
     },() => {});
   };
 
-  deleteTab = tab => event => {
-    // console.log("remove init, id => ",tab)
-    const url = `${config.api}/${this.props.page}/${this.props.language}/removeTab/${tab.title}`
-    axios.delete(url)
-        .then(response => {
-            if (response.status === 200) { 
-              
-              //this.props.removeData(tab.id)
-              document.location.reload(true);
-            } 
-        })
-        .catch(error => {
-          console.log("error", error)
-        });
-  };
-
-  saveTab = tab => event => {
-     const url = `${config.api}/${this.props.page}/${this.props.language}/editTab/${tab.id}`
-      axios.put(url, tab)
-        .then(response => {
-            if (response.status === 200) { 
-              this.props.refetchData()
-            } 
-        })
-        .catch(error => {
-          console.log("error", error)
-        });
-    this.setState((prevState, props) => {
-      return {
-        prevOpenedTab: prevState.openedTab,
-        openedTab: ""
-      };
-    },() => {  });
-  };
-
   render() {
-    //console.log("this.props => ", this.props)
+    
     return (
       <TabsContext.Provider
         value={{

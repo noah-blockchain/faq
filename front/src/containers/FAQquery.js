@@ -14,8 +14,8 @@ class FAQquery extends React.Component {
      this.state = {
       data: "",
       title: "Noah FAQ",
+      language: "en",
       page: "faq",
-      language: ""
       };
   }
   
@@ -24,15 +24,13 @@ class FAQquery extends React.Component {
   }
 
   refetchData() {
-    axios.get(`${config.api}/${this.state.page}/en`)
+    axios.get(`${config.api}/${this.state.page}/${this.state.language}`)
     .then(response => {
       if (response.status === 200) { 
         if (response.status === 200) { 
           const data = response.data.data
-          const language = response.data.language
           this.setState({
-            data,
-            language
+            data
             }
           )
           this.forceUpdate()
@@ -44,10 +42,24 @@ class FAQquery extends React.Component {
     });
   }
 
+  changeLanguage = () => {
+    if (this.state.language === "en") {
+      this.setState({
+        language: "jp"
+        }, () => { this.refetchData()})
+    } else {
+      this.setState({
+        language: "en"
+        }, () => { this.refetchData()})
+    }
+  }
+
   render() {
     return (
       <Section>
-      <Header />
+      <Header 
+      changeLanguage={this.changeLanguage}
+      language={this.state.language}/>
       <Content 
         refetchData={this.refetchData.bind(this)}
         data={this.state.data}/>
