@@ -148,10 +148,10 @@ class Header extends Component {
                     Noah FAQ
                 </HeaderLogoText>
              </ContentSectionLeft>
-             <ContentSectionCenter>
+             {/* <ContentSectionCenter>
                 <Search placeholder="Search"/>
                 <SearchLogo />
-             </ContentSectionCenter>
+             </ContentSectionCenter> */}
              <ContentSectionRight>
                  <StyledLink to="/admin">
                  {/* <Route exact path="/admin" component={AdminPanel} /> */}

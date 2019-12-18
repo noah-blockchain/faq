@@ -12,11 +12,13 @@ const Section = styled.section`
     margin-right: auto;
     flex-wrap: wrap;
     display: flex;
-    @media (min-width: 640px) {
-        max-width: 640px
-    }
+    // @media (min-width: 640px) {
+    //     max-width: 640px
+    // }
     @media (min-width: 768px) {
-        max-width: 768px
+        width: 95%;
+        margin: 0 auto;
+        display: block;
     }
     @media (min-width: 1024px) {
         max-width: 1024px
@@ -53,28 +55,55 @@ const Border = styled.hr`
 
 `;
 
+const TabsBlock = styled.div`
+box-shadow: 0 4px 8px rgba(0,0,0,.1);
+color: #1a202c;
+padding: 2rem;
+line-height: 1.5;
+background-color: #fff;
+min-height: 200px;
+
+@media (min-width: 640px) {
+    width: 440px;
+}
+@media (min-width: 768px) {
+    width: 400px;
+}
+@media (min-width: 860px) {
+    width: 550px;
+}
+@media (min-width: 1024px) {
+    width: 724px;
+}
+@media (min-width: 1280px) {
+    width: 880px;
+}
+`;
+
 class Content extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
        language: "",
-       data: {},
-       activeTab: "Main"
+       data: [],
+       activeTab: "Main",
+       page: ""
         };
     }
    
     componentDidUpdate(prevProps, prevState) {
         if ((prevProps.data !== this.props.data)) {
             this.setState({
-                language: this.props.data.language,
-                data: this.props.data.data
+                language: this.props.language,
+                data: this.props.data,
+                page: this.props.page
             })
         }   
     }
 
     dataUpdate (data) {
         this.setState({
-            activeTab: data
+            activeTab: data.title
         },()=>{})
      }
 
@@ -83,62 +112,37 @@ class Content extends React.Component {
       }
 
     render() {
-        console.log("this.state.data",this.state.data)
-      return (
+        if (!this.state.data) {
+            
+            return (
+        <div>
+            Fetching data...
+        </div>
+        )
+            }
+        else if (this.state.data) {
+            console.log("this.state.data => ",this.state.data)
+                return (
         <Section>
-        <Tabs dataUpdate={this.dataUpdate.bind(this)}>
-          <TabsSection label="Main">
-              <TabsContent>
-                  <TabsTitle>
-                      Main page title
-                  </TabsTitle>
-                  <Border />
-                  <div className="content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.data.Content)}}></div>
-              </TabsContent>
-          </TabsSection>
-
-          <TabsSection label="Deligation">
-              <TabsContent>
-                  <TabsTitle>
-                  Deligation page title
-                  </TabsTitle>
-                  <Border />
-                  <div className="content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.data.Deligation)}}></div>
-              </TabsContent>
-          </TabsSection>
-
-          <TabsSection label="Services">
-              <TabsContent>
-                  <TabsTitle>
-                  Services page title
-                  </TabsTitle>
-                  <Border />
-                  <div className="content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.data.Services)}}></div>
-              </TabsContent>
-          </TabsSection>
-
-          <TabsSection label="Wallets">
-              <TabsContent>
-                  <TabsTitle>
-                  Wallets page title
-                  </TabsTitle>
-                  <Border />
-                  <div className="content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.data.Wallets)}}></div>
-              </TabsContent>
-          </TabsSection>
-
-          <TabsSection label="Masternodes">
-              <TabsContent>
-                  <TabsTitle>
-                  Masternodes page title
-                  </TabsTitle>
-                  <Border />
-                  <div className="content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.data.Masternodes)}}></div>
-              </TabsContent>
-          </TabsSection>
-        </Tabs>
-      </Section>
-      )
+            <Tabs
+                dataUpdate={this.dataUpdate.bind(this)}
+                page={this.state.page}
+                activeTab={{id:0}}
+                language={this.state.language}
+            >
+            {this.state.data.map(((object, id) => {
+                console.log("object",object)
+                console.log("id",id)
+             return  <TabsSection key={id}>
+                        <Tabs.Tab id={id} title={object.Header}>
+                            <TabsBlock dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(object.Content)}}></TabsBlock>
+                        </Tabs.Tab>
+                    </TabsSection>  ;
+             }))}
+            </Tabs>
+        </Section>
+                )
+        }
     }
   }
 

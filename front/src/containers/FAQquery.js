@@ -12,8 +12,10 @@ class FAQquery extends React.Component {
   constructor(props) {
     super(props);
      this.state = {
-        counter: 0,
-        data: ""
+      data: "",
+      title: "Noah FAQ",
+      page: "faq",
+      language: ""
       };
   }
   
@@ -22,17 +24,24 @@ class FAQquery extends React.Component {
   }
 
   refetchData() {
-    axios.get(`${config.localhost}/faq/en`)
-        .then(response => {
-            if (response.status === 200) { 
-              this.setState({
-                data: response.data
-              })
-            } 
-        })
-        .catch(error => {
-          console.log("error", error)
-        });
+    axios.get(`${config.api}/${this.state.page}/en`)
+    .then(response => {
+      if (response.status === 200) { 
+        if (response.status === 200) { 
+          const data = response.data.data
+          const language = response.data.language
+          this.setState({
+            data,
+            language
+            }
+          )
+          this.forceUpdate()
+        } 
+      } 
+    })
+    .catch(error => {
+      console.log("error", error)
+    });
   }
 
   render() {
