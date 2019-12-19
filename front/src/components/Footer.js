@@ -40,6 +40,7 @@ const Logo = styled.div`
 const ContentSectionRight = styled.section`
     display: block;
     margin-top: -5px;
+    margin-right: 15px;
     @media (max-width: 630px) {
         margin: 15px auto;
         width: max-content;

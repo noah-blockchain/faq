@@ -16,13 +16,28 @@ class FAQquery extends React.Component {
       title: "Noah FAQ",
       language: "en",
       page: "faq",
+      height: window.innerHeight, 
+      width: window.innerWidth
       };
+      this.updateDimensions = this.updateDimensions.bind(this);
   }
   
   componentDidMount() {
     this.refetchData()
+    window.addEventListener("resize", this.updateDimensions)
   }
 
+  updateDimensions() {
+    this.setState({
+      height: window.innerHeight, 
+      width: window.innerWidth
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions);
+  }
+  
   refetchData() {
     axios.get(`${config.api}/${this.state.page}/${this.state.language}`)
     .then(response => {

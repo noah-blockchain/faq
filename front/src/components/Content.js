@@ -13,23 +13,23 @@ const Section = styled.section`
     flex-wrap: wrap;
     display: flex;
     margin-top: 120px;
-    width: 1160px; 
+    //width: 1160px; 
     
     @media (max-width: 640px) {
-        max-width: unset;
-        width: unset;
+        // max-width: unset;
+        width: 95%;
         margin: 120 auto;
         display: block;
         position: absolute;
     }  
-     @media (max-width: 768px) {
-        width: 95%;
-        margin: 120 auto;
-        display: block;
+    @media (min-width: 768px) {
+        max-width: 768px
     }
+
     @media (min-width: 1024px) {
         max-width: 1024px
     }
+
     @media (min-width: 1280px) {
         max-width: 1280px
     }
@@ -53,14 +53,14 @@ const TabsBlock = styled.div`
         width: 450px;
     }
     @media (min-width: 800px) {
-        width: 524px;
+        width: 500px;
     }
     @media (min-width: 900px) {
-        width: 624px;
+        width: 550px;
     }
-    @media (min-width: 1024px) {
-        width: 724px;
-    }
+    // @media (min-width: 1024px) {
+    //     width: 724px;
+    // }
     @media (min-width: 1280px) {
         width: 880px;
     }

@@ -12,14 +12,13 @@ const Section = styled.section`
     background-size: cover;
     padding: 34px 0;
     width: 100%;
-    height: 60px; 
+    height: 40px; 
     position: absolute;
     top: 0;
     margin-bottom: 60px;
 `;
 
 const ContentSection = styled.div`
-    padding-top: 1rem;
     padding-bottom: 1rem;
     margin-left: auto;
     margin-right: auto;
@@ -29,7 +28,7 @@ const ContentSection = styled.div`
     display: flex;
     
     @media (min-width: 768px) {
-            max-width: none
+            max-width: 768px
     }
     
     @media (min-width: 1024px) {
@@ -76,7 +75,7 @@ const CountryButton = styled.div`
     height: 1em;
     display: block;
     background-color: transparent;
-    border: 1px solid white;
+    //border: 1px solid white;
     border-color: #fff;
     border-width: 2px;
     border-radius: 21px;
