@@ -34,10 +34,11 @@ class FAQquery extends React.Component {
     });
   }
 
+
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateDimensions);
   }
-  
+
   refetchData() {
     axios.get(`${config.api}/${this.state.page}/${this.state.language}`)
     .then(response => {

@@ -71,6 +71,8 @@ const FooterMenuLastLink = styled.a`
     font-weight: 800;
     display: inline-block;
     cursor: pointer;
+    text-decoration: none;
+    color: inherit;
     ::after {
         margin: 0px 3px;
     }
@@ -96,7 +98,7 @@ class Footer extends Component {
                    <FooterMenuLink target="_blank" href="http://explorer.testnet.noah-blockchain.com/">
                        Explorer
                    </FooterMenuLink>
-                   <FooterMenuLastLink>
+                   <FooterMenuLastLink target="_blank" href="https://docs.noah-blockchain.com/">
                        Docs
                    </FooterMenuLastLink>
                 </FooterMenu>
