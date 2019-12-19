@@ -40,30 +40,30 @@ const TabsSection = styled.div`
 `;
 
 const TabsBlock = styled.div`
-box-shadow: 0 4px 8px rgba(0,0,0,.1);
-color: #1a202c;
-padding: 2rem;
-line-height: 1.5;
-background-color: #fff;
-min-height: 200px;
-@media (min-width: 640px) {
-    width: 340px;
-}
-@media (min-width: 768px) {
-    width: 450px;
-}
-@media (min-width: 800px) {
-    width: 524px;
-}
-@media (min-width: 900px) {
-    width: 624px;
-}
-@media (min-width: 1024px) {
-    width: 724px;
-}
-@media (min-width: 1280px) {
-    width: 880px;
-}
+    box-shadow: 0 4px 8px rgba(0,0,0,.1);
+    color: #1a202c;
+    padding: 2rem;
+    line-height: 1.5;
+    background-color: #fff;
+    min-height: 200px;
+    @media (min-width: 640px) {
+        width: 340px;
+    }
+    @media (min-width: 768px) {
+        width: 450px;
+    }
+    @media (min-width: 800px) {
+        width: 524px;
+    }
+    @media (min-width: 900px) {
+        width: 624px;
+    }
+    @media (min-width: 1024px) {
+        width: 724px;
+    }
+    @media (min-width: 1280px) {
+        width: 880px;
+    }
 `;
 
 class Content extends React.Component {

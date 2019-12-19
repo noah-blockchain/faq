@@ -58,6 +58,7 @@ class FAQquery extends React.Component {
     return (
       <Section>
       <Header 
+      title={this.state.title}
       changeLanguage={this.changeLanguage}
       language={this.state.language}/>
       <Content 

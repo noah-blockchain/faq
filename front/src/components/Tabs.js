@@ -7,7 +7,6 @@ const ListTabs = ({ children }) => (
     paddingLeft: 0,
     listStyle: "none",
     margin: 0,
-    //width: "10em"
   }}>{ children }</ul>
 );
 
@@ -72,7 +71,6 @@ const TabAnchorItem = ({ isActiveTab, children, ...restProps}) => {
     style.transition = "all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms";
     style.cursor = "default";
     style.borderLeft = "4px solid #b38340";
-    //  style.width = "100%";
   }
 
   return (

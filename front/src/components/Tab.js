@@ -12,7 +12,6 @@ class Tab extends React.Component {
 
   render() {
     const { context: { activeTab: { id: activeTabId } } } = this.context;
-     //const { context: { openedTab: { id: openedTabId } } } = this.context;
     const { children, id: tabId } = this.props; 
     return activeTabId === tabId && children;
   }

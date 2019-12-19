@@ -6,16 +6,16 @@ import japanImage from '../img/japan.svg';
 import englishImage from '../img/united-kingdom.svg';
 
 const Section = styled.section`
-overflow: hidden;
-background-image: url(${header});
-color: #fff;
-background-size: cover;
-padding: 34px 0;
-width: 100%;
-height: 60px; 
-position: absolute;
-top: 0;
-margin-bottom: 60px;
+    overflow: hidden;
+    background-image: url(${header});
+    color: #fff;
+    background-size: cover;
+    padding: 34px 0;
+    width: 100%;
+    height: 60px; 
+    position: absolute;
+    top: 0;
+    margin-bottom: 60px;
 `;
 
 const ContentSection = styled.div`
@@ -27,9 +27,6 @@ const ContentSection = styled.div`
     align-items: center;
     flex-wrap: wrap;
     display: flex;
-    // @media (min-width: 640px) {
-    //         max-width: 640px
-    // }
     
     @media (min-width: 768px) {
             max-width: none
@@ -116,7 +113,7 @@ class Header extends Component {
              <ContentSectionLeft>
                 <Logo />
                 <HeaderLogoText>
-                    Noah FAQ
+                {this.props.title}
                 </HeaderLogoText>
              </ContentSectionLeft>
              <ContentSectionRight>
