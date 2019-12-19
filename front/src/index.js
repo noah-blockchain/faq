@@ -4,13 +4,14 @@ import App from "./App";
 import { createGlobalStyle } from 'styled-components/macro';
 
 const GlobalStyle = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
   body {
-    @import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
     margin: 0;
     padding: 0;
     font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
+    max-width: 100vw;
     min-height: 400px;
     @media (min-width: 640px) {
       min-width:100px;
