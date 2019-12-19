@@ -48,6 +48,22 @@ class TabProvider extends React.Component {
     this.props.dataUpdate(tab);
   };
 
+  activateTabMobile = e => {
+    e.persist();
+    const tab = {
+      id: e.target.selectedIndex,
+      title: e.target.value
+    }
+  
+    this.setState((prevState, props) => {
+      return {
+        prevActiveTab: prevState.activeTab,
+        activeTab: tab
+      };
+    },()=>{});
+    this.props.dataUpdate(tab);
+  };
+
   editTab = tab => event => {
     this.setState((prevState, props) => {
       return {
@@ -67,6 +83,7 @@ class TabProvider extends React.Component {
             addTab: this.addTab,
             removeTab: this.removeTab,
             activateTab: this.activateTab,
+            activateTabMobile: this.activateTabMobile,
             editTab: this.editTab,
             deleteTab: this.deleteTab,
             saveTab: this.saveTab

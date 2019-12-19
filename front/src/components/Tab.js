@@ -6,7 +6,6 @@ class Tab extends React.Component {
     this.context.context.addTab({
       id: this.props.id,
       title: this.props.title,
-      openedId: this.props.openedId
     });
   }
 

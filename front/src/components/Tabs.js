@@ -10,7 +10,7 @@ const ListTabs = ({ children }) => (
   }}>{ children }</ul>
 );
 
-const ListTabsMobile = ({ children }) => (
+const ListTabsMobile = ({ children, ...restProps }) => (
   <select style={{
     display: "block",
     padding: "10px",
@@ -18,12 +18,12 @@ const ListTabsMobile = ({ children }) => (
     border: "1px solid rgb(179, 131, 64)",
     borderRadius: "5px",
     margin: "0 auto 15px",
-    webkitAppearance: "none",
-    mozAppearance: "none",
+    WebkitAppearance: "none",
+    MozAppearance: "none",
     textIndent: "1px",
     textOverflow: '',
     width: "100%"
-  }}>{ children }</select>
+  }} { ...restProps } >{ children }</select>
 );
 
 const TabTitleItem = ({ children, innerRef, ...restProps }) => (
@@ -36,9 +36,8 @@ const TabTitleItem = ({ children, innerRef, ...restProps }) => (
   }} { ...restProps }>{ children }</li>
 );
 
-const TabTitleItemMobile = ({ children, innerRef, ...restProps }) => (
+const TabTitleItemMobile = ({ isActiveTab, children, innerRef, ...restProps }) => (
   <option  
-  ref={innerRef}
   style={{
     display: "flex",
     width: "200px",
@@ -122,6 +121,7 @@ class Tabs extends React.Component {
   static Tab = TabItem;
   
   state = {
+    value:"Main",
     tabsElements: [],
     addingNew: false,
     language: "",
@@ -138,7 +138,13 @@ class Tabs extends React.Component {
         },()=>{})
     }   
   }
-  
+
+  handleChange = (event)=>{
+    console.log("event.target.value",event.target.value)
+
+    // this.setState({value: event.target.value},()=>{})
+  }
+
   render() {
       if (window.innerWidth <= 640) {
         return (
@@ -154,34 +160,35 @@ class Tabs extends React.Component {
               {value => (
                 <ReactTabsMobile>
                   <TabsContainerMobile>
-                    <ListTabsMobile>
+                    <ListTabsMobile
+                      onChange={value.context.activateTabMobile.bind(this)}
+                    >
                       {value.context.tabs.map((tab, index) => (
                         <TabTitleItemMobile
                           value={tab.title}
-                          key={index}
+                          key={tab.id}
                           id={tab.id}
-                          innerRef={tabElement => {
-                            if (!this.state.tabsElements[tab.id]) {
-                              this.setState((prevState, props) => {
-                                const tabsElements = prevState.tabsElements;
-                                tabsElements[tab.id] = tabElement;
-                                return {
-                                  tabsElements
-                                };
-                              });
-                            }
-                          }}
-                          isActiveTab={value.context.activeTab.id === tab.id}
-                            href="#!"
-                            onClick={value.context.activateTab(tab)}
-                            onKeyPress={event => {
-                              const code = event.keyCode || event.which;
-                              if (code === 13) {
-                                this.activateTab(tab)(event);
-                              }
-                            }}
-                        > {tab.title}
-                         
+                          // innerRef={tabElement => {
+                          //   if (!this.state.tabsElements[tab.id]) {
+                          //     this.setState((prevState, props) => {
+                          //       const tabsElements = prevState.tabsElements;
+                          //       tabsElements[tab.id] = tabElement;
+                          //       return {
+                          //         tabsElements
+                          //       };
+                          //     });
+                          //   }
+                          // }}
+                          // isActiveTab={value.context.activeTab.id === tab.id}
+                          // onClick={value.context.activateTab(tab)}
+                          // onKeyPress={event => {
+                          //     const code = event.keyCode || event.which;
+                          //     if (code === 13) {
+                          //       this.activateTab(tab)(event);
+                          //     }
+                          //   }}
+                        > 
+                          {tab.title}
                         </TabTitleItemMobile>
                       ))}
                     </ListTabsMobile>
