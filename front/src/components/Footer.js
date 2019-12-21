@@ -11,7 +11,7 @@ const Section = styled.section`
     padding: 34px 0;
     width: 100%;
     flex: 0 0 auto;
-    position: absolute;
+    //position: absolute;
     bottom: 0;
 `;
 
@@ -98,8 +98,8 @@ class Footer extends Component {
                    <FooterMenuLink target="_blank" href="http://explorer.testnet.noah-blockchain.com/">
                        Explorer
                    </FooterMenuLink>
-                   <FooterMenuLastLink target="_blank" href="https://docs.noah-blockchain.com/">
-                       Docs
+                   <FooterMenuLastLink target="_blank" href="https://faq.noah-blockchain.com/">
+                       FAQ
                    </FooterMenuLastLink>
                 </FooterMenu>
              </ContentSectionRight>

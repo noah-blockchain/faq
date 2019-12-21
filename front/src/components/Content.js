@@ -14,6 +14,7 @@ const Section = styled.section`
     flex-wrap: wrap;
     display: flex;
     flex: 1 0 auto;
+    min-height: 100vh;
     @media (max-width: 640px) {
         width: 95%;
         margin: 0 auto;
