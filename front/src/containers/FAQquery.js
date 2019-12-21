@@ -5,7 +5,9 @@ import config from '../config'
 import styled from 'styled-components';
 
 const Section = styled.section`
-  padding-bottom: 100px;
+display: flex;
+flex-direction: column;
+height: 100%;
 `;
 
 class FAQquery extends React.Component {

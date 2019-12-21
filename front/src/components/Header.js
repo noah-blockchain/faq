@@ -12,10 +12,9 @@ const Section = styled.section`
     background-size: cover;
     padding: 34px 0;
     width: 100%;
-    height: 40px; 
-    position: absolute;
+    height: 40px;
     top: 0;
-    margin-bottom: 60px;
+    flex: 0 0 auto;
 `;
 
 const ContentSection = styled.div`

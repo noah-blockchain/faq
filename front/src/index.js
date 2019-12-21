@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     max-width: 100vw;
-    min-height: 400px;
+    min-height: 100vh;
     @media (min-width: 640px) {
       min-width:100px;
     }

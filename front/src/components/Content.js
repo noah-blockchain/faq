@@ -5,6 +5,7 @@ import DOMPurify from 'dompurify'
 
 const Section = styled.section`
     padding-top: 4rem;
+    padding-bottom: 4rem;
     width: 100%;
     padding-left: .5rem;
     padding-right: .5rem;
@@ -12,15 +13,11 @@ const Section = styled.section`
     margin-right: auto;
     flex-wrap: wrap;
     display: flex;
-    margin-top: 120px;
-    //width: 1160px; 
-    
+    flex: 1 0 auto;
     @media (max-width: 640px) {
-        // max-width: unset;
         width: 95%;
-        margin: 120 auto;
+        margin: 0 auto;
         display: block;
-        position: absolute;
     }  
     @media (min-width: 768px) {
         max-width: 768px
@@ -45,7 +42,7 @@ const TabsBlock = styled.div`
     padding: 2rem;
     line-height: 1.5;
     background-color: #fff;
-    min-height: 200px;
+    min-height: 300px;
     @media (min-width: 640px) {
         width: 340px;
     }
