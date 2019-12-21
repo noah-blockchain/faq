@@ -98,8 +98,8 @@ class Footer extends Component {
                    <FooterMenuLink target="_blank" href="http://explorer.testnet.noah-blockchain.com/">
                        Explorer
                    </FooterMenuLink>
-                   <FooterMenuLastLink target="_blank" href="https://faq.noah-blockchain.com/">
-                       FAQ
+                   <FooterMenuLastLink target="_blank" href="https://docs.noah-blockchain.com/">
+                       Docs
                    </FooterMenuLastLink>
                 </FooterMenu>
              </ContentSectionRight>
