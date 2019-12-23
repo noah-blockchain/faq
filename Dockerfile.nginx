@@ -1,0 +1,10 @@
+FROM node:lts-alpine as builder
+COPY front/ /srv
+WORKDIR /srv
+RUN set -x \
+    && npm install --only=production \
+    && npm run build
+
+FROM nginx:stable-alpine
+COPY --from=builder /srv/build /usr/share/nginx/html
+COPY front/public /usr/share/nginx/html/public

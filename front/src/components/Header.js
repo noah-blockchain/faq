@@ -13,8 +13,7 @@ const Section = styled.section`
     padding: 34px 0;
     width: 100%;
     height: 40px;
-    top: 0;
-    flex: 0 0 auto;
+    top: 0; 
 `;
 
 const ContentSection = styled.div`

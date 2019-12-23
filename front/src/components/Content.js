@@ -6,15 +6,13 @@ import DOMPurify from 'dompurify'
 const Section = styled.section`
     padding-top: 4rem;
     padding-bottom: 4rem;
-    width: 100%;
+    width: 95%;
     padding-left: .5rem;
     padding-right: .5rem;
     margin-left: auto;
     margin-right: auto;
-    flex-wrap: wrap;
     display: flex;
     flex: 1 0 auto;
-    min-height: 100vh;
     @media (max-width: 640px) {
         width: 95%;
         margin: 0 auto;

@@ -5,14 +5,25 @@ import { createGlobalStyle } from 'styled-components/macro';
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
+  ::-webkit-scrollbar { 
+    width: 0px; 
+    background: transparent;  
+  }
+  * {
+	  margin: 0;
+	  padding: 0;
+  }
+  html {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  html,
   body {
     margin: 0;
     padding: 0;
     font-family: 'Lato', sans-serif;
-    margin: 0;
-    padding: 0;
     max-width: 100vw;
-    min-height: 100vh;
+    height: 100%;
     @media (min-width: 640px) {
       min-width:100px;
     }
@@ -30,8 +41,8 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 ReactDOM.render(
-    <div>
+    <>
     <GlobalStyle />
     <App />
-  </div>, 
+  </>, 
 document.getElementById("root"));
